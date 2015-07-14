@@ -1,0 +1,43 @@
+#/etc/sysconfig/varnish
+
+NFILES=131072
+MEMLOCK=82000
+NPROCS="unlimited"
+RELOAD_VCL=1
+VARNISH_VCL_CONF=/etc/varnish/default.vcl
+VARNISH_LISTEN_PORT=80
+VARNISH_ADMIN_LISTEN_ADDRESS=127.0.0.1
+VARNISH_ADMIN_LISTEN_PORT=6082
+VARNISH_SECRET_FILE=/etc/varnish/secret
+VARNISH_MIN_THREADS=50
+VARNISH_MAX_THREADS=2000
+VARNISH_THREAD_TIMEOUT=120
+VARNISH_STORAGE_SIZE=1500M
+VARNISH_STORAGE="malloc,${VARNISH_STORAGE_SIZE}"
+VARNISH_TTL=120
+DAEMON_OPTS="-a ${VARNISH_LISTEN_ADDRESS}:${VARNISH_LISTEN_PORT} \
+             -f ${VARNISH_VCL_CONF} \
+             -T ${VARNISH_ADMIN_LISTEN_ADDRESS}:${VARNISH_ADMIN_LISTEN_PORT} \
+             -t ${VARNISH_TTL} \
+             -w ${VARNISH_MIN_THREADS},${VARNISH_MAX_THREADS},${VARNISH_THREAD_TIMEOUT} \
+             -u varnish -g varnish \
+             -S ${VARNISH_SECRET_FILE} \
+             -s ${VARNISH_STORAGE} \
+             -h critbit \
+             -p between_bytes_timeout=0.5 \
+             -p connect_timeout=0.5 \
+             -p first_byte_timeout=2 \
+             -p http_gzip_support=off \
+             -p http_max_hdr=64 \
+             -p http_range_support=on \
+             -p http_req_hdr_len=32768 \
+             -p http_req_size=65536 \
+             -p http_resp_hdr_len=32768 \
+             -p http_resp_size=65536 \
+             -p idle_send_timeout=5 \
+             -p listen_depth=2048 \
+             -p send_timeout=30 \
+             -p sess_timeout=5 \
+             -p session_linger=100 \
+             -p 'cc_command=exec cc -fpic -shared -Wl,-x -L/usr/include/GeoIP.h -L/usr/lib -lGeoIP -o %o %s' \
+             -p thread_pools=4"
