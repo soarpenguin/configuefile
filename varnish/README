@@ -1,0 +1,13 @@
+########################
+## varnish document
+########################
+
+# vcl and book
+https://github.com/varnish/Varnish-Book.git
+http://www.slideshare.net/paxdickinson/introduction-to-varnish-vcl
+
+# varnish code
+https://www.varnish-cache.org/trac/browser
+
+# geoip
+https://github.com/varnish/Varnish-Book.git
