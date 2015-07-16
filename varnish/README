@@ -9,5 +9,8 @@ http://www.slideshare.net/paxdickinson/introduction-to-varnish-vcl
 # varnish code
 https://www.varnish-cache.org/trac/browser
 
+# varnish rpm mirror
+https://repo.varnish-cache.org/redhat/varnish-3.0/el6/x86_64/varnish/
+
 # geoip
 https://github.com/varnish/Varnish-Book.git

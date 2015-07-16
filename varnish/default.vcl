@@ -45,6 +45,17 @@ include "/etc/varnish/geoip.vcl";
 */
 
 sub vcl_recv {
+
+    /* install varnish-geoip
+    C{
+        vcl_geoip_set_header(sp);
+    }C
+
+    C{
+        vcl_geoip_country_set_header_xff(sp);
+    }C
+    */
+
     if (req.restarts == 0) {
 	if (req.http.x-forwarded-for) {
 	    set req.http.X-Forwarded-For =
@@ -71,12 +82,7 @@ sub vcl_recv {
         /* Not cacheable by default */
         return (pass);
     }
-	
-	/* install varnish-geoip
-	C{
-        vcl_geoip_set_header(sp);
-    }C */
-	
+
     return (lookup);
 }
 
