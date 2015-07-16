@@ -1,0 +1,9 @@
+####################################
+## software configure file sample
+####################################
+
+# some useful open software configure sample.
+nginx_proxy.conf
+nutcracker.yml
+redis.conf.tpl
+varnish/
